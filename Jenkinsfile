@@ -4,14 +4,14 @@ pipeline {
 
     stages {
         stage('SCM Checkout'){
-          git 'https://github.com/prakashk0301/maven-project'
+          git 'https://github.com/apraka/jenkins_pipeline_hello'
         }
   }
     {
         stage ('Compile Stage') {
 
             steps {
-                withMaven(maven : 'LocalMaven') {
+                withMaven(maven : 'local maven') {
                     sh 'mvn clean compile'
                 }
             }
