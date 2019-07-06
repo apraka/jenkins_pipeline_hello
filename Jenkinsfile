@@ -1,23 +1,15 @@
-node {
-    stage('build'){
-        echo "building"
-    }
-}
-node {
-    stage('test'){
-        echo "testing"
-    }
-}
-stage('Get approval'){
-    input "Deploy to qa?"
-}
-node {
-    stage('deploy to qa'){
-        echo "deploying"
-    }
-}
-node {
-    stage('deploy to prod'){
-        echo "deploying to prod"
-    }
-}
+pipeline {
+    agent any
+    stages {
+        stage('clone my code'){
+          git 'https://github.com/apraka/maven-project/'
+          }
+         stage ('compile my code'){
+            steps {
+                withMaven(maven : 'local maven'){
+                  sh `mvn compile`
+                  }
+                 }
+                }
+               }
+              } 
